@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Blockchain Workshop</title>
+</head>
+<body>
+<h1>Blockchain Workshop</h1>
+<h2>Current Blockchain</h2>
+<div th:each="block : ${blockchain.chain}">
+    <p>Index: <span th:text="${block.index}">Index</span></p>
+    <p>Timestamp: <span th:text="${block.timestamp}">Timestamp</span></p>
+    <p>Previous Hash: <span th:text="${block.previousHash}">Previous Hash</span></p>
+    <p>Current Hash: <span th:text="${block.currentHash}">Current Hash</span></p>
+    <p>Data: <span th:text="${block.data}">Data</span></p>
+    <hr>
+</div>
+
+<h2>Mine a New Block</h2>
+<form action="#" th:action="@{/mine}" th:object="${block}" method="post">
+    <label for="data">Data:</label>
+    <input type="text" id="data" name="data" th:field="*{data}" />
+    <button type="submit">Mine Block</button>
+</form>
+
+<h2>Validate Blockchain</h2>
+<form action="#" th:action="@{/validate}" method="get">
+    <button type="submit">Validate</button>
+</form>
+</body>
+</html>
